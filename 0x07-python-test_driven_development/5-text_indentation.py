@@ -1,56 +1,26 @@
 #!/usr/bin/python3
-
-# 5-text_indentation.py
-
-"""Defines a text-indentation function."""
-
+"""
+text_indentation
+Module defines a function for formatting text by adding newlines after certain punctuation marks
+"""
 
 
 def text_indentation(text):
-
-    """Print text with two new lines after each '.', '?', and ':'.
-
+    """
+    Format text by adding newlines after certain punctuation marks.
 
     Args:
-
-        text (string): The text to print.
+        text (str): The input text to be formatted.
 
     Raises:
-
-        TypeError: If text is not a string.
-
+        TypeError: If `text` is not a string.
     """
-
     if not isinstance(text, str):
-
         raise TypeError("text must be a string")
 
+    for char in ".?:":
+        text = text.replace(char, char + "\n\n")
 
-    c = 0
+    list_lines = [line.strip() for line in text.split('\n')]
 
-    while c < len(text) and text[c] == ' ':
-
-        c += 1
-
-
-    while c < len(text):
-
-        print(text[c], end="")
-
-        if text[c] == "\n" or text[c] in ".?:":
-
-            if text[c] in ".?:":
-
-                print("\n")
-
-            c += 1
-
-            while c < len(text) and text[c] == ' ':
-
-                c += 1
-
-            continue
-
-        c += 1
-
-
+    print("\n".join(list_lines), end="")
